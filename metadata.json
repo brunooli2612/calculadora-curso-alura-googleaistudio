@@ -1,0 +1,6 @@
+{
+  "name": "Calculadora Python Tkinter: Guia Didático e Simulador",
+  "description": "Guia didático interativo e simulador visual de calculadora GUI com Python e Tkinter para iniciantes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
