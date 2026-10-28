@@ -12,8 +12,9 @@ import { LearningGuide } from './components/LearningGuide';
 import { EventFlowDiagram } from './components/EventFlowDiagram';
 import { PracticeQuiz } from './components/PracticeQuiz';
 import { HowToRunModal } from './components/HowToRunModal';
-import { PYTHON_CODE_TWO_INPUTS } from './data/pythonCode';
-import { Terminal, Sparkles, BookOpen } from 'lucide-react';
+import { ReadmeViewer } from './components/ReadmeViewer';
+import { PYTHON_CODE_TWO_INPUTS, README_MARKDOWN } from './data/pythonCode';
+import { Terminal, Sparkles, BookOpen, GitBranch } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('simulador');
@@ -25,7 +26,19 @@ export default function App() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'calculadora_tkinter.py';
+    link.download = 'calculadora.py';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownloadReadme = () => {
+    const blob = new Blob([README_MARKDOWN], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'README.md';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -168,6 +181,10 @@ export default function App() {
         {activeTab === 'desafios' && (
           <PracticeQuiz />
         )}
+
+        {activeTab === 'readme' && (
+          <ReadmeViewer onDownloadReadme={handleDownloadReadme} />
+        )}
       </main>
 
       {/* Footer */}
@@ -178,17 +195,25 @@ export default function App() {
           </div>
           <div className="flex items-center gap-4">
             <button
+              onClick={() => setActiveTab('readme')}
+              className="hover:text-slate-900 transition flex items-center gap-1"
+            >
+              <GitBranch className="w-3.5 h-3.5 text-slate-400" />
+              <span>README.md</span>
+            </button>
+            <span>·</span>
+            <button
               onClick={() => setIsHowToRunOpen(true)}
               className="hover:text-slate-900 transition"
             >
-              Instruções de Instalação
+              Como Executar
             </button>
             <span>·</span>
             <button
               onClick={handleDownloadPy}
               className="text-sky-700 hover:text-sky-900 font-semibold transition"
             >
-              Baixar Código .py
+              Baixar calculadora.py
             </button>
           </div>
         </div>

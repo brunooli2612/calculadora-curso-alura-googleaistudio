@@ -13,7 +13,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onDownl
     { id: 'codigo', label: 'Código Python' },
     { id: 'guia', label: 'Guia Didático' },
     { id: 'fluxo', label: 'Ciclo de Execução' },
-    { id: 'desafios', label: 'Quiz de Fixação' },
+    { id: 'readme', label: 'README GitHub' },
+    { id: 'desafios', label: 'Quiz' },
   ];
 
   return (
